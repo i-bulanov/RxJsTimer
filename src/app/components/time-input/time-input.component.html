@@ -1,0 +1,18 @@
+<label>
+  Hours
+  <input #hours type="number" min="0" max="59" placeholder="Hrs"
+         [value]="d.getHours()"
+         (change)="d.updateState(hours.value, 'hours')"/>
+</label>
+<label>
+  Minutes
+  <input #minutes type="number" min="0" max="59" placeholder="Mins"
+         [value]="d.getMinutes()"
+         (change)="d.updateState(minutes.value, 'minutes')"/>
+</label>
+<label>
+  Seconds
+  <input #seconds type="number" min="0" max="59" placeholder="Sc"
+         [value]="d.getSeconds()"
+         (change)="d.updateState(seconds.value, 'seconds')"/>
+</label>
