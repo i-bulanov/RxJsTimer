@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { fromEvent, interval, merge, of } from 'rxjs';
-import {filter, mapTo, scan, switchMap, map, buffer, debounce} from 'rxjs/operators';
+import {filter, mapTo, scan, switchMap, } from 'rxjs/operators';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { faPause } from '@fortawesome/free-solid-svg-icons';
 import { faSquare } from '@fortawesome/free-solid-svg-icons';
@@ -54,4 +54,5 @@ export class CountdownComponent implements OnInit, AfterViewInit {
       })
     );
   }
+
 }

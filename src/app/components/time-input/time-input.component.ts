@@ -10,6 +10,6 @@ export class TimeInputComponent implements OnInit {
 
   constructor(public d: InputToCountdownDirective) {}
 
-  ngOnInit() {}
-
+  ngOnInit() {
+  }
 }
