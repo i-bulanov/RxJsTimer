@@ -17,7 +17,7 @@ export class InputToCountdownDirective {
   updateState(value, command) {
     let valToNumber = parseInt(value);
     if (valToNumber < 0) { valToNumber = 0; }
-    let update = this.state.value;
+    let update  = this.state.value;
     if (command === 'seconds') { update.seconds = valToNumber; }
     if (command === 'minutes') { update.minutes = valToNumber; }
     if (command === 'hours') { update.hours = valToNumber; }

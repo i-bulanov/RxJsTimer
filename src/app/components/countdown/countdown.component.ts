@@ -26,8 +26,10 @@ export class CountdownComponent implements OnInit, AfterViewInit {
   @ViewChild('reset', { static: true })
   resetBtn: ElementRef;
 
-  intervalObs$;
+  @ViewChild('zero', {static: true })
+  zeroBtn: ElementRef;
 
+  intervalObs$;
   constructor(public d: InputToCountdownDirective) { }
 
   ngOnInit() { }
@@ -37,13 +39,20 @@ export class CountdownComponent implements OnInit, AfterViewInit {
     const start$ = fromEvent(this.startBtn.nativeElement, 'click').pipe(mapTo(true));
     const pause$ = fromEvent(this.pauseBtn.nativeElement, 'dblclick').pipe(mapTo(false));
     const reset$ = fromEvent(this.resetBtn.nativeElement, 'click').pipe(mapTo(null));
+    const zero$ = fromEvent(this.zeroBtn.nativeElement, 'click').pipe(mapTo(undefined));
 
     const stateChange$ = this.d.obs$.pipe(mapTo(null));
 
-    this.intervalObs$ = merge(start$, pause$, reset$, stateChange$).pipe(
+    this.intervalObs$ = merge(start$, pause$, reset$, zero$, stateChange$).pipe(
 
       switchMap(isCounting => {
         if (isCounting === null) { return of(null); }
+        if (isCounting === undefined) {
+          this.d.updateState(0, 'seconds');
+          this.d.updateState(0, 'minutes');
+          this.d.updateState(0, 'hours');
+          return of(null);
+        }
         return isCounting ? interval(1000) : of();
       }),
 
